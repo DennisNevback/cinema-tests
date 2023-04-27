@@ -1,12 +1,14 @@
 module.exports = class Acl {
 
+  // TURN OFF ALL ACL
+
   // Here you can implement ACL
   // return true = allowed, false = forbidden
 
   // req.sesssion.user -> logged in user if any
 
   static checkRoute(req, table, method, isTable, isView) {
-    
+
     // TURN OFF ALL ACL
     return true;
 
@@ -16,8 +18,8 @@ module.exports = class Acl {
       'not logged in';
 
     // only allow these roles:
-    let allowedRoles = ['not logged in', 'logged in', 'not logged in'];
-    if (!allowedRoles.includes(role)) { role = 'not logged in'; }
+    let allowedRoles = ['not logged in', 'logged in', 'admin'];
+    if (!allowedRoles.includes[role]) { role = 'not logged in'; }
 
     // log things
     console.log([
@@ -28,7 +30,7 @@ module.exports = class Acl {
     ].join('\n'));
 
     // allow people to register (write to users)
-    if (role === 'not logged in' && table === 'users' && method === 'post') {
+    if (role === 'not logged in' || 'admin' && table === 'users' && method === 'post') {
       return true;
     }
 
